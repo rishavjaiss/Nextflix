@@ -1,0 +1,56 @@
+.container {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("../../assets/images/background.jpg");
+  color: white;
+  border-bottom: 8px solid #222;
+  .mainSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    margin: 150px auto 200px auto;
+    .header {
+      text-align: center;
+      width: 600px;
+      margin: auto;
+      font-size: 60px;
+    }
+    .subheader {
+      font-weight: 500;
+    }
+    p {
+      width: max-content;
+      font-size: 1.25rem;
+    }
+    form {
+      width: 60%;
+      display: flex;
+      align-items: center;
+      input {
+        width: 70%;
+        height: 60px;
+        padding: 20px;
+        font-size: medium;
+        &:focus {
+          outline: none;
+        }
+      }
+      button {
+        width: 30%;
+        height: 60px;
+        color: white;
+        cursor: pointer;
+        background-color: #e40a15;
+        font-size: x-large;
+        border: none;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

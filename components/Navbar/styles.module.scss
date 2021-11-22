@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 50px;
+  align-items: center;
+  div {
+    display: flex;
+    width: 250px;
+    justify-content: space-around;
+    select {
+      width: 100px;
+    }
+    a {
+      color: white;
+      background-color: #e40a15;
+      padding: 7px 17px;
+      border-radius: 3px;
+    }
+  }
+}
