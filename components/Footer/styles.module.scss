@@ -1,0 +1,21 @@
+.container {
+  background-color: #f3f3f3;
+  padding: 20px 75px;
+  color: #767676;
+  height: 25vh;
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 55%;
+    width: 50%;
+    padding: 0;
+    list-style: none;
+    li {
+      width: fit-content;
+      font-weight: 300;
+      font-size: small;
+      padding: 10px 0;
+    }
+  }
+}

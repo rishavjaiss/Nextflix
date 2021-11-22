@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import HeroSection from "../components/HeroSection";
 import Section from "../components/Section";
+import Footer from "../components/Footer";
 import tvImage from "../assets/images/tv.png";
 import downloadMobile from "../assets/images/download-mobile.jpg";
 import deviceStreaming from "../assets/images/device-streaming.png";
@@ -49,6 +50,7 @@ export default function Home() {
         imageHeight="550"
         imageWidth="750"
       />
+      <Footer page="homepage" />
     </div>
   );
 }
