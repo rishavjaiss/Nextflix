@@ -1,0 +1,61 @@
+.container {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("../../assets/images/background.jpg");
+  .mainSection {
+    height: 100vh;
+    form {
+      min-height: 660px;
+      display: flex;
+      flex-direction: column;
+      width: 500px;
+      margin: auto;
+      padding: 60px 68px 40px;
+      background-color: rgba(0, 0, 0, 0.75);
+      h2 {
+        color: white;
+        font-size: xx-large;
+      }
+      input {
+        background-color: #333333;
+        color: white;
+        &::placeholder {
+          color: white;
+        }
+      }
+      .checkbox {
+        color: #b3b3b3;
+        font-size: 13px;
+      }
+      .signInButton {
+        margin: 24px 0 12px;
+        padding: 16px;
+        color: white;
+        cursor: pointer;
+        background-color: #e40a15;
+        font-size: 16px;
+        font-weight: 700;
+        border: none;
+        border-radius: 4px;
+      }
+      p {
+        margin-top: 25px;
+        color: #737373;
+        a {
+          color: white;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      span {
+        color: #737373;
+        font-size: small;
+      }
+    }
+  }
+}

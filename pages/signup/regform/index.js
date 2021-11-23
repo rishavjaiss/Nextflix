@@ -5,11 +5,13 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import styles from "./styles.module.scss";
 import TextField from "@mui/material/TextField";
+import { useRouter } from "next/dist/client/router";
 
 export default function RegForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ type: "", message: "" });
+  const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.length === 0) {
@@ -22,8 +24,11 @@ export default function RegForm() {
     } else {
       setError("");
       axios
-        .post("/api/regform", { email, password })
-        .then((res) => console.log(res));
+        .post("/api/registration", { email, password })
+        .then((res) => {
+          router.push("/browse");
+        })
+        .catch((e) => console.log(e));
     }
   };
   useEffect(() => {
@@ -36,11 +41,12 @@ export default function RegForm() {
       <div className={styles.container}>
         <Head>
           <title>Nextflix - Registration</title>
+          <link rel="icon" href="../../netflix-icon.ico" />
         </Head>
         <Navbar page="registration" />
         <div className={styles.mainSection}>
           <p>
-            STEP <b>1</b> OF <b>3</b>
+            STEP <b>2</b> OF <b>3</b>
           </p>
           <h3>Create a password to start your membership</h3>
           <span>
