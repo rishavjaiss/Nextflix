@@ -42,7 +42,7 @@ export default function Login() {
       axios
         .post("/api/login", { email, password })
         .then((res) => {
-          router.push("/browse");
+          router.replace("/browse");
         })
         .catch((e) => console.log(e));
     }

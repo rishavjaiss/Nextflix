@@ -1,8 +1,8 @@
-import { getAuth, onAuthStateChanged } from "../../firebase.config";
+import { firebaseAuth } from "../../firebase.config";
 
 export default function handler(req, res) {
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
+  const auth = firebaseAuth.getAuth();
+  firebaseAuth.onAuthStateChanged(auth, (user) => {
     if (user) {
       res.status(200).json({ data: user });
     } else {

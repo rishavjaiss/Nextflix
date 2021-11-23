@@ -1,8 +1,9 @@
-import { getAuth, signOut } from "../../firebase.config";
+import { firebaseAuth } from "../../firebase.config";
 
 export default function handler(req, res) {
-  const auth = getAuth();
-  signOut(auth)
+  const auth = firebaseAuth.getAuth();
+  firebaseAuth
+    .signOut(auth)
     .then(() => {
       res.status(200).json({ status: "Successful" });
     })
