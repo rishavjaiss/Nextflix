@@ -31,7 +31,7 @@ export default function ProfileOverlay({ user, profiles, setProfile }) {
     <div className={styles.container}>
       <Navbar />
       <div className={styles.mainSection}>
-        <h2>Who's Watching?</h2>
+        <h2>Who&apos;s Watching?</h2>
         <ul className={styles.profilesContainer}>
           {profiles.map((item) => (
             <li

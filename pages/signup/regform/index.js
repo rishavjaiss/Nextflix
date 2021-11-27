@@ -50,7 +50,7 @@ export default function RegForm() {
           </p>
           <h3>Create a password to start your membership</h3>
           <span>
-            Just a few more steps and you're done! We hate paperwork, too.
+            Just a few more steps and you&apos;re done! We hate paperwork, too.
           </span>
           <form onSubmit={handleSubmit}>
             <TextField
