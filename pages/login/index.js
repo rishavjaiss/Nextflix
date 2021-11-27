@@ -99,7 +99,7 @@ export default function Login() {
             New to Netflix? <Link href="/">Sign up now.</Link>
           </p>
           <span>
-            This page is protected by Google reCAPTCHA to ensure you're not a
+            This page is protected by Google reCAPTCHA to ensure you&apos;re not a
             bot.
           </span>
         </form>
