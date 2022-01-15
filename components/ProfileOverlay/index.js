@@ -41,7 +41,17 @@ export default function ProfileOverlay({ user, profiles, setProfile }) {
                   alias: item.alias,
                   id: item.id,
                   isChoosing: false,
+                  imageUrl: item.imageUrl,
                 });
+                sessionStorage.setItem(
+                  "profileChoosen",
+                  JSON.stringify({
+                    alias: item.alias,
+                    id: item.id,
+                    isChoosing: false,
+                    imageUrl: item.imageUrl,
+                  })
+                );
               }}
             >
               <Profile type="existingProfile" {...item} />

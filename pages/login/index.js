@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, CircularProgress } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import axios from "axios";
 import Head from "next/head";
@@ -14,6 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isRememberMe, setIsRememberMe] = useState(false);
   const [error, setError] = useState({ type: "", message: "" });
+  const [loginLoading, setLoginLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function Login() {
   }, []);
 
   const handleSubmit = (e) => {
+    setLoginLoading(true);
     e.preventDefault();
     if (email.length === 0) {
       setError({
@@ -42,6 +44,7 @@ export default function Login() {
       axios
         .post("/api/login", { email, password })
         .then((res) => {
+          setLoginLoading(false);
           router.replace("/browse");
         })
         .catch((e) => console.log(e));
@@ -94,13 +97,19 @@ export default function Login() {
             label="Remember me"
             className={styles.checkbox}
           />
-          <button className={styles.signInButton}>Sign In</button>
+          <button className={styles.signInButton}>
+            {loginLoading ? (
+              <CircularProgress color="info" thickness={5} size={20} />
+            ) : (
+              "Sign In"
+            )}
+          </button>
           <p>
             New to Netflix? <Link href="/">Sign up now.</Link>
           </p>
           <span>
-            This page is protected by Google reCAPTCHA to ensure you&apos;re not a
-            bot.
+            This page is protected by Google reCAPTCHA to ensure you&apos;re not
+            a bot.
           </span>
         </form>
       </div>

@@ -1,0 +1,30 @@
+.container {
+  padding: 0 30px;
+  background-color: #141414;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .menuContainer {
+    display: flex;
+    align-items: center;
+    .navItem {
+      color: white;
+      list-style: none;
+      margin: 5px 15px;
+      font-size: small;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .profileMenuContainer {
+    height: 100%;
+    margin: 0 50px;
+    .navItem {
+      list-style: none;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

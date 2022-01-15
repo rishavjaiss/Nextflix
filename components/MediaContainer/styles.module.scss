@@ -1,0 +1,16 @@
+.container {
+  height: 100%;
+  color: #ffffff;
+  background-color: #141414;
+  padding: 25px 30px;
+  .movieListContainer {
+    overflow: auto;
+    white-space: nowrap;
+    .movieItem {
+      margin: 2.5px 5px;
+      display: inline-block;
+      list-style: none;
+      width: fit-content;
+    }
+  }
+}

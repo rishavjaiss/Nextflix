@@ -1,20 +1,21 @@
 import Image from "next/dist/client/image";
 import addProfileIcon from "../../assets/images/addProfile-icon.png";
+import styles from "./styles.module.scss";
 
 export default function Profile({ type, imageUrl, alias }) {
   if (type === "existingProfile") {
     return (
-      <>
-        <img src={imageUrl} style={{ height: "200px", width: "200px" }} />
-        <p style={{ color: "#D4D4D4" }}>{alias}</p>
-      </>
+      <div className={styles.profile}>
+        <img src={imageUrl} />
+        <p>{alias}</p>
+      </div>
     );
   } else if (type === "addProfile") {
     return (
-      <>
-        <Image src={addProfileIcon} width="200px" height="200px" />
-        <p style={{ color: "#D4D4D4" }}>Add Profile</p>
-      </>
+      <div className={styles.profile}>
+        <img src={addProfileIcon.src} />
+        <p>Add Profile</p>
+      </div>
     );
   }
 }
