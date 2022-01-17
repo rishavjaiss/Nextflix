@@ -12,33 +12,33 @@ export default function MediaContainer({
     <div className={styles.container}>
       <h2>Popular on Nextflix</h2>
       <div className={styles.movieListContainer}>
-        {popularMovies.map((item) => (
-          <li className={styles.movieItem} key={item.id}>
-            <MovieList movie={item} />
+        {popularMovies.map(({ id, backdrop_path }) => (
+          <li className={styles.movieItem} key={id}>
+            <MovieList movieId={id} image={backdrop_path} />
           </li>
         ))}
       </div>
       <h2>Top Rated on Nextflix</h2>
       <div className={styles.movieListContainer}>
-        {topRatedMovies.map((item) => (
-          <li className={styles.movieItem} key={item.id}>
-            <MovieList movie={item} />
+        {topRatedMovies.map(({ id, backdrop_path }) => (
+          <li className={styles.movieItem} key={id}>
+            <MovieList movieId={id} image={backdrop_path} />
           </li>
         ))}
       </div>
       <h2>Latest on Nextflix</h2>
       <div className={styles.movieListContainer}>
-        {latestMovies.map((item) => (
-          <li className={styles.movieItem} key={item.id}>
-            <MovieList movie={item} />
+        {latestMovies.map(({ id, backdrop_path }) => (
+          <li className={styles.movieItem} key={id}>
+            <MovieList movieId={id} image={backdrop_path} />
           </li>
         ))}
       </div>
       <h2>Trending This Week</h2>
       <div className={styles.movieListContainer}>
-        {trendingThisWeek.map((item) => (
-          <li className={styles.movieItem} key={item.id}>
-            <MovieList movie={item} />
+        {trendingThisWeek.map(({ id, backdrop_path }) => (
+          <li className={styles.movieItem} key={id}>
+            <MovieList movieId={id} image={backdrop_path} />
           </li>
         ))}
       </div>

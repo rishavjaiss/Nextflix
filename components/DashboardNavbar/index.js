@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import netflixLogo from "../../assets/images/Netflix-logo.svg";
 import Image from "next/image";
+import Link from "next/link";
 import { Avatar, Stack, Tooltip } from "@mui/material";
 import { Search, Notifications } from "@mui/icons-material";
 
@@ -9,14 +10,20 @@ export default function DashboardNavbar({ handleLogout, profile }) {
   return (
     <div className={styles.container}>
       <div className={styles.menuContainer}>
-        <li
-          className={styles.navItem}
-          style={{ marginTop: "10px", marginRight: "30px" }}
-        >
-          <Image src={netflixLogo} width="75" height="50" />
-        </li>
-        <li className={styles.navItem}>Home</li>
-        <li className={styles.navItem}>TV Shows</li>
+        <Link href="/">
+          <li
+            className={styles.navItem}
+            style={{ marginTop: "10px", marginRight: "30px" }}
+          >
+            <Image src={netflixLogo} width="75" height="50" />
+          </li>
+        </Link>
+        <Link href="/browse">
+          <li className={styles.navItem}>Home</li>
+        </Link>
+        <Link href="/browse/tv">
+          <li className={styles.navItem}>TV Shows</li>
+        </Link>
         <li className={styles.navItem}>Movies</li>
         <li className={styles.navItem}>News & Popular</li>
         <li className={styles.navItem}>My List</li>
@@ -49,7 +56,7 @@ export default function DashboardNavbar({ handleLogout, profile }) {
                     }}
                     onClick={() => handleLogout()}
                   >
-                    Sign out of Netflix
+                    Sign out of Nextflix
                   </p>
                 </>
               }

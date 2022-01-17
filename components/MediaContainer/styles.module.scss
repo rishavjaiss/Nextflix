@@ -7,10 +7,14 @@
     overflow: auto;
     white-space: nowrap;
     .movieItem {
+      max-height: 300px;
       margin: 2.5px 5px;
       display: inline-block;
       list-style: none;
-      width: fit-content;
+      z-index: 999;
+      &:hover {
+        outline: 0.5px solid white;
+      }
     }
   }
 }

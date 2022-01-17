@@ -7,7 +7,9 @@ export default function Navbar({ page }) {
   return (
     <div className={styles.container}>
       <Link href="/">
-        <Image src={netflixLogo} width="175" height="75" />
+        <a>
+          <Image src={netflixLogo} width="175" height="75" />
+        </a>
       </Link>
       <div>
         {page === "registration" && <Link href="/login">Sign In</Link>}

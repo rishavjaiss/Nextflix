@@ -1,21 +1,10 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import Navbar from "../Navbar";
+import CustomModal from "../Modal";
 import Profile from "./profile";
-import { Backdrop, Box, Modal, Fade, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { createProfile } from "../../firebase.config";
-
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "#D4D4D4",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function ProfileOverlay({ user, profiles, setProfile }) {
   const [open, setOpen] = useState(false);
@@ -23,9 +12,12 @@ export default function ProfileOverlay({ user, profiles, setProfile }) {
   const openAddProfileModal = () => setOpen(true);
   const closeAddProfileModal = () => setOpen(false);
   const handleAddProfile = () => {
-    createProfile(user, newAlias, "friend").then((res) => {
-      console.log(res);
-    });
+    createProfile(user, newAlias, "friend")
+      .then((res) => {
+        console.log(res);
+        setOpen(false);
+      })
+      .catch((e) => console.log(e));
   };
   return (
     <div className={styles.container}>
@@ -63,55 +55,43 @@ export default function ProfileOverlay({ user, profiles, setProfile }) {
             </li>
           )}
         </ul>
-        <Modal
-          open={open}
-          onClose={closeAddProfileModal}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={modalStyle}>
-              <div
-                style={{
-                  margin: "auto",
-                  width: "fit-content",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <img
-                  src={profiles[0].imageUrl}
-                  style={{ width: "200px", height: "200px" }}
-                />
-                <br></br>
-                <TextField
-                  id="new-profile-alias"
-                  label="Alias"
-                  variant="outlined"
-                  onChange={(e) => setNewAlias(e.target.value)}
-                />
-                <button
-                  style={{
-                    backgroundColor: "#e40a15",
-                    margin: "15px",
-                    padding: "10px",
-                    color: "white",
-                    cursor: "pointer",
-                    fontWeight: 700,
-                    border: "none",
-                    borderRadius: "4px",
-                  }}
-                  onClick={() => handleAddProfile()}
-                >
-                  Done
-                </button>
-              </div>
-            </Box>
-          </Fade>
-        </Modal>
+        <CustomModal open={open} closeModal={closeAddProfileModal}>
+          <div
+            style={{
+              margin: "auto",
+              width: "fit-content",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <img
+              src={profiles[0]?.imageUrl}
+              style={{ width: "200px", height: "200px" }}
+            />
+            <br></br>
+            <TextField
+              id="new-profile-alias"
+              label="Alias"
+              variant="outlined"
+              onChange={(e) => setNewAlias(e.target.value)}
+            />
+            <button
+              style={{
+                backgroundColor: "#e40a15",
+                margin: "15px",
+                padding: "10px",
+                color: "white",
+                cursor: "pointer",
+                fontWeight: 700,
+                border: "none",
+                borderRadius: "4px",
+              }}
+              onClick={() => handleAddProfile()}
+            >
+              Done
+            </button>
+          </div>
+        </CustomModal>
       </div>
     </div>
   );

@@ -47,7 +47,11 @@ export default function Login() {
           setLoginLoading(false);
           router.replace("/browse");
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          setLoginLoading(false);
+          alert("Oops, something went wrong. Please try again later!");
+          console.log(e);
+        });
     }
   };
   return (

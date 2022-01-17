@@ -1,0 +1,17 @@
+.modalContainer {
+  display: flex;
+  .moviePoster {
+    width: 45%;
+    height: 100%;
+  }
+  .movieDetailsContainer {
+    margin: auto;
+    width: 50%;
+    .movieTitle {
+      margin: 15px 0;
+    }
+    .movieTagline {
+      margin: 0;
+    }
+  }
+}
