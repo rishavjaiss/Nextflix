@@ -15,7 +15,9 @@ export default function DashboardNavbar({ handleLogout, profile }) {
     search.focus();
   };
 
-  const handleSubmit = (query) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const query = document.querySelector(`.${styles.searchInputBox}`).value;
     router.push(`/search/${query}`);
   };
 
@@ -43,16 +45,17 @@ export default function DashboardNavbar({ handleLogout, profile }) {
       <div className={styles.profileMenuContainer}>
         <Stack direction="row" spacing={2}>
           <li className={styles.navItem}>
-            <input
-              type="text"
-              placeholder="Titles, people, genres"
-              className={styles.searchInputBox}
-              onSubmit={(e) => handleSubmit(e.target.value)}
-              onBlur={(e) => {
-                e.target.classList.remove(styles.searchBoxExpanded);
-                e.target.value = "";
-              }}
-            />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Titles, people, genres"
+                className={styles.searchInputBox}
+                onBlur={(e) => {
+                  e.target.classList.remove(styles.searchBoxExpanded);
+                  e.target.value = "";
+                }}
+              />
+            </form>
             <Search
               className={styles.searchIcon}
               onClick={() => handleClickOnSearch()}

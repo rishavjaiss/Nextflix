@@ -26,6 +26,9 @@
       &:hover {
         cursor: pointer;
       }
+      form {
+        display: inline;
+      }
       .searchInputBox {
         padding: 0 10px;
         margin-top: 2.5px;

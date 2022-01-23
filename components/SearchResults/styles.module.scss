@@ -1,0 +1,22 @@
+.container {
+  height: 100vh;
+  color: #ffffff;
+  background-color: #141414;
+  padding: 25px 30px;
+  margin: auto;
+  .searchResultsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+    .searchItem {
+      list-style-type: none;
+      margin: 10px 5px;
+      width: 15%;
+      &:hover {
+        opacity: 0.8;
+        outline: 1px solid white;
+      }
+    }
+  }
+}

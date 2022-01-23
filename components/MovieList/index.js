@@ -26,13 +26,15 @@ export default function MovieList({ movieId, image }) {
       setLocation("moviePage");
     } else if (window.location.pathname === "/browse/tv") {
       setLocation("tvPage");
+    } else if (window.location.pathname.split("/")[1] === "search") {
+      setLocation("searchResults");
     }
   }, []);
 
   useEffect(async () => {
     if (open) {
       setLoading(true);
-      if (location === "moviePage") {
+      if (location === "moviePage" || location === "searchResults") {
         const videos = await getVideos(`movie/${movieId}`);
         const movieData = await getMovies(`movie/${movieId}`);
         setMovieData({ videos: videos.results, ...movieData });
@@ -47,19 +49,21 @@ export default function MovieList({ movieId, image }) {
 
   return (
     <>
-      <Card
-        sx={{ maxWidth: 300, maxHeight: 600 }}
-        className={styles.movieCard}
-        onClick={() => openMovieModal()}
-      >
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="150"
-            image={`https://image.tmdb.org/t/p/w500${image}`}
-          />
-        </CardActionArea>
-      </Card>
+      {image && (
+        <Card
+          sx={{ maxWidth: 300, maxHeight: 600 }}
+          className={styles.movieCard}
+          onClick={() => openMovieModal()}
+        >
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="150"
+              image={`https://image.tmdb.org/t/p/w500${image}`}
+            />
+          </CardActionArea>
+        </Card>
+      )}
       <CustomModal open={open} closeModal={closeMovieModal}>
         {loading ? (
           <div style={{ textAlign: "center" }}>

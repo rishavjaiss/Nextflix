@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import HeroSection from "../components/HeroSection";
@@ -7,8 +8,22 @@ import tvImage from "../assets/images/tv.png";
 import downloadMobile from "../assets/images/download-mobile.jpg";
 import deviceStreaming from "../assets/images/device-streaming.png";
 import childrenCreateProfile from "../assets/images/children-create-profile.png";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    axios
+      .get("/api/session")
+      .then((user) => {
+        if (user) {
+          router.replace("/browse");
+        }
+      })
+      .catch((e) => console.log("No user"));
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>

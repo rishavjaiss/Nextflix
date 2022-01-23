@@ -3,32 +3,20 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import DashboardNavbar from "../../components/DashboardNavbar";
-import MediaContainer from "../../components/MediaContainer";
+import SearchResults from "../../components/SearchResults";
 import styles from "./styles.module.scss";
-import { getMovies } from "../../utils/helper";
+import { searchMovies } from "../../utils/helper";
 
-export async function getStaticProps() {
-  const popularMovies = await getMovies("tv/popular");
-  const airingToday = await getMovies("tv/airing_today");
-  const topRatedMovies = await getMovies("tv/top_rated");
-  const trendingThisWeek = await getMovies("tv/on_the_air");
-
+export async function getServerSideProps({ params: { query } }) {
+  const searchedMovies = await searchMovies(query);
   return {
     props: {
-      popularMovies,
-      airingToday,
-      topRatedMovies,
-      trendingThisWeek,
+      searchResults: searchedMovies,
     },
   };
 }
 
-export default function TVDashboard({
-  popularMovies,
-  airingToday,
-  topRatedMovies,
-  trendingThisWeek,
-}) {
+export default function SearchQuery({ searchResults }) {
   const [profile, setProfile] = useState({});
   const router = useRouter();
 
@@ -50,17 +38,12 @@ export default function TVDashboard({
   return (
     <div className={styles.container}>
       <Head>
-        <title>TV Shows - Nextflix</title>
+        <title>Search Results - Nextflix</title>
         <link rel="icon" href="../../netflix-icon.ico" />
       </Head>
       <>
         <DashboardNavbar handleLogout={handleLogout} profile={profile} />
-        <MediaContainer
-          popularMovies={popularMovies.results}
-          airingToday={airingToday.results}
-          topRatedMovies={topRatedMovies.results}
-          trendingThisWeek={trendingThisWeek.results}
-        />
+        <SearchResults searchedMovies={searchResults.results} />
       </>
     </div>
   );

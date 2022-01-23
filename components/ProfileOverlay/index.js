@@ -4,17 +4,18 @@ import Navbar from "../Navbar";
 import CustomModal from "../Modal";
 import Profile from "./profile";
 import { TextField } from "@mui/material";
-import { createProfile } from "../../firebase.config";
+import { createProfile, getProfiles } from "../../firebase.config";
 
 export default function ProfileOverlay({ user, profiles, setProfile }) {
   const [open, setOpen] = useState(false);
   const [newAlias, setNewAlias] = useState("");
+  const [profilesData, setProfilesData] = useState(profiles);
   const openAddProfileModal = () => setOpen(true);
   const closeAddProfileModal = () => setOpen(false);
   const handleAddProfile = () => {
     createProfile(user, newAlias, "friend")
       .then((res) => {
-        console.log(res);
+        getProfiles(user.uid).then((res) => setProfilesData(res));
         setOpen(false);
       })
       .catch((e) => console.log(e));
@@ -25,7 +26,7 @@ export default function ProfileOverlay({ user, profiles, setProfile }) {
       <div className={styles.mainSection}>
         <h2>Who&apos;s Watching?</h2>
         <ul className={styles.profilesContainer}>
-          {profiles.map((item) => (
+          {profilesData.map((item) => (
             <li
               key={item.id}
               onClick={() => {
@@ -49,7 +50,7 @@ export default function ProfileOverlay({ user, profiles, setProfile }) {
               <Profile type="existingProfile" {...item} />
             </li>
           ))}
-          {profiles.length < 5 && (
+          {profilesData.length < 5 && (
             <li onClick={() => openAddProfileModal()}>
               <Profile type="addProfile" />
             </li>
