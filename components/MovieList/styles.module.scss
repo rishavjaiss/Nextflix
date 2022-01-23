@@ -5,10 +5,14 @@
     height: 100%;
   }
   .movieDetailsContainer {
-    margin: auto;
+    margin: auto 0px auto 30px;
     width: 50%;
     .movieTitle {
       margin: 15px 0;
+    }
+    .movieOverview {
+      max-height: 125px;
+      overflow: auto;
     }
     .movieTagline {
       margin: 0;

@@ -16,16 +16,31 @@ import ReactPlayer from "react-player";
 export default function MovieList({ movieId, image }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState("");
   const [movieData, setMovieData] = useState({ videos: [], data: {} });
   const openMovieModal = () => setOpen(true);
   const closeMovieModal = () => setOpen(false);
 
+  useEffect(() => {
+    if (window.location.pathname === "/browse") {
+      setLocation("moviePage");
+    } else if (window.location.pathname === "/browse/tv") {
+      setLocation("tvPage");
+    }
+  }, []);
+
   useEffect(async () => {
     if (open) {
       setLoading(true);
-      const videos = await getVideos(movieId);
-      const movieData = await getMovies(`movie/${movieId}`);
-      setMovieData({ videos: videos.results, ...movieData });
+      if (location === "moviePage") {
+        const videos = await getVideos(`movie/${movieId}`);
+        const movieData = await getMovies(`movie/${movieId}`);
+        setMovieData({ videos: videos.results, ...movieData });
+      } else if (location === "tvPage") {
+        const videos = await getVideos(`tv/${movieId}`);
+        const tvShowData = await getMovies(`tv/${movieId}`);
+        setMovieData({ videos: videos.results, ...tvShowData });
+      }
       setLoading(false);
     }
   }, [open]);
@@ -61,12 +76,14 @@ export default function MovieList({ movieId, image }) {
                 <ReactPlayer
                   playing
                   loop
-                  width={400}
+                  width={"100%"}
                   height={250}
                   url={`https://www.youtube.com/watch?v=${movieData.videos[0].key}`}
                 />
               )}
-              <h4 className={styles.movieTitle}>{movieData.title}</h4>
+              <h3 className={styles.movieTitle}>
+                {movieData.title ? movieData.title : movieData.original_name}
+              </h3>
               {movieData?.tagline?.length > 0 && (
                 <h5 className={styles.movieTagline}>- {movieData.tagline}</h5>
               )}
@@ -75,16 +92,16 @@ export default function MovieList({ movieId, image }) {
                 style={{
                   display: "flex",
                   flexDirection:
-                    movieData?.genres?.length > 3 ? "column" : "row",
+                    movieData?.genres?.length > 2 ? "column" : "row",
                   justifyContent: "space-between",
                   alignItems:
-                    movieData?.genres?.length > 3 ? "flex-start" : "center",
+                    movieData?.genres?.length > 2 ? "flex-start" : "center",
                 }}
               >
                 <Stack
                   direction="row"
                   style={{
-                    marginBottom: movieData?.genres?.length > 3 ? "15px" : 0,
+                    marginBottom: movieData?.genres?.length > 2 ? "15px" : 0,
                   }}
                   spacing={1}
                 >

@@ -22,9 +22,51 @@
     margin: 0 50px;
     .navItem {
       list-style: none;
+      margin: 5px 5px;
       &:hover {
         cursor: pointer;
       }
+      .searchInputBox {
+        padding: 0 10px;
+        margin-top: 2.5px;
+        width: 0px;
+        height: 35px;
+        outline: none;
+        border: none;
+        background-color: #141414;
+        color: white;
+      }
+      .searchIcon {
+        color: white;
+        position: relative;
+        top: 7.5px;
+        right: 30px;
+        font-size: 25px;
+      }
+      .searchBoxExpanded {
+        display: inline-block;
+        width: 225px;
+        animation-name: searchBoxExpansion;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+      }
     }
+  }
+}
+
+@keyframes searchBoxExpansion {
+  0% {
+    opacity: 0;
+    width: 0px;
+  }
+  75% {
+    background-color: black;
+    border: 1px solid white;
+  }
+  100% {
+    opacity: 100%;
+    width: 225px;
+    background-color: black;
+    border: 1px solid white;
   }
 }

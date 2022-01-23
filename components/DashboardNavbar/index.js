@@ -3,10 +3,22 @@ import styles from "./styles.module.scss";
 import netflixLogo from "../../assets/images/Netflix-logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Avatar, Stack, Tooltip } from "@mui/material";
 import { Search, Notifications } from "@mui/icons-material";
 
 export default function DashboardNavbar({ handleLogout, profile }) {
+  const router = useRouter();
+  const handleClickOnSearch = () => {
+    const search = document.querySelector(`.${styles.searchInputBox}`);
+    search.classList.add(`${styles.searchBoxExpanded}`);
+    search.focus();
+  };
+
+  const handleSubmit = (query) => {
+    router.push(`/search/${query}`);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.menuContainer}>
@@ -31,12 +43,23 @@ export default function DashboardNavbar({ handleLogout, profile }) {
       <div className={styles.profileMenuContainer}>
         <Stack direction="row" spacing={2}>
           <li className={styles.navItem}>
-            <Avatar sx={{ bgcolor: "#141414" }}>
-              <Search />
-            </Avatar>
+            <input
+              type="text"
+              placeholder="Titles, people, genres"
+              className={styles.searchInputBox}
+              onSubmit={(e) => handleSubmit(e.target.value)}
+              onBlur={(e) => {
+                e.target.classList.remove(styles.searchBoxExpanded);
+                e.target.value = "";
+              }}
+            />
+            <Search
+              className={styles.searchIcon}
+              onClick={() => handleClickOnSearch()}
+            />
           </li>
           <li className={styles.navItem}>
-            <Avatar sx={{ bgcolor: "#141414" }}>
+            <Avatar sx={{ bgcolor: "#141414" }} style={{ marginRight: "15px" }}>
               <Notifications />
             </Avatar>
           </li>
@@ -49,7 +72,6 @@ export default function DashboardNavbar({ handleLogout, profile }) {
                   <p
                     style={{
                       textAlign: "center",
-                      padding: "5px",
                       fontSize: "12px",
                       cursor: "pointer",
                       color: "white",

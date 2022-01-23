@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 import { checkSession, getProfiles } from "../../firebase.config";
 import { getMovies } from "../../utils/helper";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const result = await checkSession();
   const profiles = await getProfiles(result.data.uid);
   const popularMovies = await getMovies("movie/popular");

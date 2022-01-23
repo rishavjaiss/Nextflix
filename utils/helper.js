@@ -6,9 +6,9 @@ export async function getMovies(type) {
   return movies;
 }
 
-export async function getVideos(id) {
+export async function getVideos(type) {
   const data = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.NEXT_PUBLIC_MOVIE_DB_API_KEY}&language=en-US`
+    `https://api.themoviedb.org/3/${type}/videos?api_key=${process.env.NEXT_PUBLIC_MOVIE_DB_API_KEY}&language=en-US`
   );
   const videos = await data.json();
   return videos;
