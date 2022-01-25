@@ -28,10 +28,14 @@ Install Nextflix with yarn or npm
     
 ## Screenshots
 
-![Homepage](https://ibb.co/2n462CB)
-![Login Page](https://ibb.co/mSSH5p8)
-![Profile Choosing](https://ibb.co/KxHpS5y)
-![Dashboard](https://ibb.co/MV7ZnSj)
+[![Homepage.png](https://i.postimg.cc/MH1Qqt64/Homepage.png)](https://postimg.cc/m12DSYFN)
+
+[![Login.png](https://i.postimg.cc/T3dDvrZ7/Login.png)](https://postimg.cc/zVQBnRDK)
+
+[![Profile-Overlay.png](https://i.postimg.cc/HxyJ93yx/Profile-Overlay.png)](https://postimg.cc/CBwLFGJT)
+
+[![Dashboard.png](https://i.postimg.cc/nhGGvVt5/Dashboard.png)](https://postimg.cc/CRd80g5H)
+
 
 ## API Reference
 
