@@ -38,6 +38,6 @@ export const handleLogout = () => {
 };
 
 export const BASE_URL =
-  process.env === "production"
+  process.env.NODE_ENV === "production"
     ? process.env.NEXT_PUBLIC_FRONTEND_API_URL
     : "http://localhost:3000";
