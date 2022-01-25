@@ -6,7 +6,7 @@ import LoaderScreen from "../../components/LoaderScreen";
 import styles from "./styles.module.scss";
 import { getMovies } from "../../utils/helper";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const popularMovies = await getMovies("tv/popular");
   const airingToday = await getMovies("tv/airing_today");
   const topRatedMovies = await getMovies("tv/top_rated");
