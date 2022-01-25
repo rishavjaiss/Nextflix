@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import DashboardNavbar from "../../components/DashboardNavbar";
 import MediaContainer from "../../components/MediaContainer";
+import LoaderScreen from "../../components/LoaderScreen";
 import styles from "./styles.module.scss";
 import { getMovies } from "../../utils/helper";
 
@@ -30,21 +29,15 @@ export default function TVDashboard({
   trendingThisWeek,
 }) {
   const [profile, setProfile] = useState({});
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const profile = JSON.parse(window.sessionStorage.profileChoosen);
     setProfile(profile);
   }, []);
 
-  const handleLogout = () => {
-    axios
-      .post("/api/logout")
-      .then((res) => {
-        sessionStorage.removeItem("profileChoosen");
-        router.push("/");
-      })
-      .catch((e) => console.log(e));
+  const onSearchSubmit = () => {
+    setLoading(true);
   };
 
   return (
@@ -54,7 +47,8 @@ export default function TVDashboard({
         <link rel="icon" href="../../netflix-icon.ico" />
       </Head>
       <>
-        <DashboardNavbar handleLogout={handleLogout} profile={profile} />
+        <DashboardNavbar profile={profile} onSubmit={onSearchSubmit} />
+        {loading && <LoaderScreen />}
         <MediaContainer
           popularMovies={popularMovies.results}
           airingToday={airingToday.results}

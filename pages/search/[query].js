@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import DashboardNavbar from "../../components/DashboardNavbar";
 import SearchResults from "../../components/SearchResults";
+import LoaderScreen from "../../components/LoaderScreen";
 import styles from "./styles.module.scss";
 import { searchMovies } from "../../utils/helper";
 
@@ -18,21 +17,19 @@ export async function getServerSideProps({ params: { query } }) {
 
 export default function SearchQuery({ searchResults }) {
   const [profile, setProfile] = useState({});
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const profile = JSON.parse(window.sessionStorage.profileChoosen);
     setProfile(profile);
   }, []);
 
-  const handleLogout = () => {
-    axios
-      .post("/api/logout")
-      .then((res) => {
-        sessionStorage.removeItem("profileChoosen");
-        router.push("/");
-      })
-      .catch((e) => console.log(e));
+  useEffect(() => {
+    setLoading(false);
+  }, [searchResults]);
+
+  const onSearchSubmit = () => {
+    setLoading(true);
   };
 
   return (
@@ -42,7 +39,8 @@ export default function SearchQuery({ searchResults }) {
         <link rel="icon" href="../../netflix-icon.ico" />
       </Head>
       <>
-        <DashboardNavbar handleLogout={handleLogout} profile={profile} />
+        <DashboardNavbar profile={profile} onSubmit={onSearchSubmit} />
+        {loading && <LoaderScreen />}
         <SearchResults searchedMovies={searchResults.results} />
       </>
     </div>

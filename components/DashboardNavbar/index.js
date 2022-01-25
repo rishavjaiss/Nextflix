@@ -6,8 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Avatar, Stack, Tooltip } from "@mui/material";
 import { Search, Notifications } from "@mui/icons-material";
+import { handleLogout } from "../../utils/helper";
 
-export default function DashboardNavbar({ handleLogout, profile }) {
+export default function DashboardNavbar({ profile, onSubmit }) {
   const router = useRouter();
   const handleClickOnSearch = () => {
     const search = document.querySelector(`.${styles.searchInputBox}`);
@@ -17,6 +18,7 @@ export default function DashboardNavbar({ handleLogout, profile }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onSubmit();
     const query = document.querySelector(`.${styles.searchInputBox}`).value;
     router.push(`/search/${query}`);
   };
@@ -79,7 +81,13 @@ export default function DashboardNavbar({ handleLogout, profile }) {
                       cursor: "pointer",
                       color: "white",
                     }}
-                    onClick={() => handleLogout()}
+                    onClick={() =>
+                      handleLogout().then((res) =>
+                        router
+                          .push("/")
+                          .catch((e) => alert("Some error occurred!"))
+                      )
+                    }
                   >
                     Sign out of Nextflix
                   </p>

@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import { TextField } from "@mui/material";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import { Checkbox, FormControlLabel, CircularProgress } from "@mui/material";
+import {
+  Checkbox,
+  FormControlLabel,
+  CircularProgress,
+  TextField,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 import axios from "axios";
 import Head from "next/head";
 import Navbar from "../../components/Navbar";
 import styles from "./styles.module.scss";
+import { BASE_URL } from "../../utils/helper";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -42,9 +47,8 @@ export default function Login() {
         ? localStorage.setItem("loginEmail", email)
         : localStorage.removeItem("loginEmail");
       axios
-        .post("/api/login", { email, password })
+        .post(`${BASE_URL}/api/login`, { email, password })
         .then((res) => {
-          setLoginLoading(false);
           router.replace("/browse");
         })
         .catch((e) => {

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function getMovies(type) {
   const data = await fetch(
     `https://api.themoviedb.org/3/${type}?api_key=${process.env.NEXT_PUBLIC_MOVIE_DB_API_KEY}&language=en-US&page=1`
@@ -21,3 +23,21 @@ export async function searchMovies(query) {
   const movies = await data.json();
   return movies;
 }
+
+export const handleLogout = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      axios.post(`${BASE_URL}/api/logout`).then((res) => {
+        sessionStorage.removeItem("profileChoosen");
+        resolve(res);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+export const BASE_URL =
+  process.env === "production"
+    ? process.env.NEXT_PUBLIC_FRONTEND_API_URL
+    : "http://localhost:3000";

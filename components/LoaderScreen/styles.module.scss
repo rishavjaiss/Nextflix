@@ -1,0 +1,18 @@
+.container {
+  .backdrop {
+    position: absolute;
+    background-color: rgb(133, 131, 131);
+    opacity: 0.2;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+  }
+  .loaderContainer {
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+}
