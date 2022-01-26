@@ -1,11 +1,7 @@
 
-# Project Title
+## Project Title
 
-Netflix - One stop for all favourite movies and TV Shows! (Netflix Clone)
-
-
-
-
+Nextflix - One stop for all favourite movies and TV Shows! (Netflix Clone)
 
 
 ## Tech Stack
@@ -35,6 +31,23 @@ Install Nextflix with yarn or npm
 [![Profile-Overlay.png](https://i.postimg.cc/HxyJ93yx/Profile-Overlay.png)](https://postimg.cc/CBwLFGJT)
 
 [![Dashboard.png](https://i.postimg.cc/nhGGvVt5/Dashboard.png)](https://postimg.cc/CRd80g5H)
+
+
+## Demo
+
+#### Landing Page
+
+https://user-images.githubusercontent.com/58810629/151209730-9d2fd92b-c61a-46e3-b88c-76f5b59e8737.mov
+
+#### Dashboard
+
+https://user-images.githubusercontent.com/58810629/151210024-01b3a7c0-fb7f-4d4b-a0a4-d0c23858f363.mov
+
+#### Search
+
+
+https://user-images.githubusercontent.com/58810629/151210066-dd8df30b-12b2-4b8a-bd74-c59d3a67fb51.mov
+
 
 
 ## API Reference
