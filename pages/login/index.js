@@ -12,7 +12,6 @@ import axios from "axios";
 import Head from "next/head";
 import Navbar from "../../components/Navbar";
 import styles from "./styles.module.scss";
-import { BASE_URL } from "../../utils/helper";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -47,7 +46,7 @@ export default function Login() {
         ? localStorage.setItem("loginEmail", email)
         : localStorage.removeItem("loginEmail");
       axios
-        .post(`${BASE_URL}/api/login`, { email, password })
+        .post(`/api/login`, { email, password })
         .then((res) => {
           router.replace("/browse");
         })

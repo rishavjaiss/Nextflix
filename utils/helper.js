@@ -27,7 +27,7 @@ export async function searchMovies(query) {
 export const handleLogout = () => {
   return new Promise((resolve, reject) => {
     try {
-      axios.post(`${BASE_URL}/api/logout`).then((res) => {
+      axios.post(`/api/logout`).then((res) => {
         sessionStorage.removeItem("profileChoosen");
         resolve(res);
       });

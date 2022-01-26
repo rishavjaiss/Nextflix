@@ -10,13 +10,12 @@ import deviceStreaming from "../assets/images/device-streaming.png";
 import childrenCreateProfile from "../assets/images/children-create-profile.png";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { BASE_URL } from "../utils/helper";
 
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/api/session`)
+      .get(`/api/session`)
       .then((user) => {
         if (user) {
           router.replace("/browse");

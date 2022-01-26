@@ -6,7 +6,6 @@ import Footer from "../../../components/Footer";
 import styles from "./styles.module.scss";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
-import { BASE_URL } from "../../../utils/helper";
 
 export default function RegForm() {
   const [email, setEmail] = useState("");
@@ -25,7 +24,7 @@ export default function RegForm() {
     } else {
       setError("");
       axios
-        .post(`${BASE_URL}/api/registration`, { email, password })
+        .post(`/api/registration`, { email, password })
         .then((res) => {
           router.push("/browse");
         })
